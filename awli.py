@@ -2,8 +2,6 @@ import tkinter as tk
 from datetime import datetime
 
 
-
-
 def say():
     global n
     n += 1
@@ -21,8 +19,6 @@ def say():
         file.write(line)
 
 
-
-
 def append_csv(number, operator):
     d = datetime.now()
     line = '{},{},{},Operator{}\n'.format(number,
@@ -33,14 +29,11 @@ def append_csv(number, operator):
         file.write(line)
 
 
-
 def op1():
     if numbers:
         number = numbers.pop(0)
         b4.config(text=number)
         append_csv(number, 1)
-
-
 
 
 def op2():
@@ -50,14 +43,11 @@ def op2():
         append_csv(number, 2)
 
 
-
 def op3():
     if numbers:
         number = numbers.pop(0)
         b6.config(text=number)
         append_csv(number, 3)
-
-
 
 
 root = tk.Tk()
@@ -80,7 +70,6 @@ a3.grid(row=3, column=0)
 c = tk.Label(root, text='')
 c.grid(row=4, column=0)
 
-
 b = tk.Button(root, text='Get turn!', command=say)
 b.grid(row=5, column=0)
 
@@ -89,30 +78,19 @@ tp = tk.Toplevel(root)
 b1 = tk.Button(tp, text='Operator1', command=op1)
 b1.grid(row=0, column=1)
 
-
 b2 = tk.Button(tp, text='Operator2', command=op2)
 b2.grid(row=0, column=2)
-
 
 b3 = tk.Button(tp, text='Operator3', command=op3)
 b3.grid(row=0, column=3)
 
-
-
-
-
-
 b4 = tk.Label(tp, text='__')
 b4.grid(row=1, column=1)
-
 
 b5 = tk.Label(tp, text='__')
 b5.grid(row=1, column=2)
 
-
 b6 = tk.Label(tp, text='__')
 b6.grid(row=1, column=3)
-
-
 
 root.mainloop()
