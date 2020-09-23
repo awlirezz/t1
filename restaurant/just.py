@@ -1,14 +1,14 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-
+from tkinter import Image, PhotoImage 
 from  joje import *
 
 i ={
     '1' : {'name' :  'ye chiz khoob',
          'rating' : 5,
          'review' : 47,   
-         'price'  : 1.5
-         'img':'image'.'PycharmProjects/t1/restaurant/img' },
+         'price'  : 1.5,
+         'img':'restaurant/img/index.gif'},
  #   '2' : {}
  #   '3' : {}
 
@@ -39,12 +39,16 @@ tk.Label(f1, text=name, cnf=abc).grid(row=0, column=0)
 
 
 rating = i ['1']['rating']*'★'+'('+str(i['1']['review'])+')'
-tk.Label(f1, text=rating, cnf=label_cnf).grid(row=1, column=0)
+tk.Label(f1, text=rating, cnf=abc).grid(row=1, column=0)
 
 
 
-price =str(i ['1']['price'])+'$'
-tk.Label(f1, text=price, cnf=label_cnf).grid(row=2, column=0)
+price =str(i ['1']['price'])+' $            '
+tk.Label(f1, text=price, cnf=abc).grid(row=2, column=0)
 
+
+
+img = PhotoImage(file=i['1']['img'])
+tk.Label(f1,image=img ,borderwidth=6, relief="groove").grid(row=0,column=1,rowspan=3)
 root.mainloop()
 

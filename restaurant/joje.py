@@ -1,4 +1,4 @@
-label_cnf = {     'bg': '#FF6E40' }
+label_cnf = {     'bg': '#4A148C' }
 
 
 
