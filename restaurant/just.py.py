@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import Image, PhotoImage 
 from  joje import *
-
+#ddddd
 i ={
     '1' : {'name' :  'ye chiz khoob',
          'rating' : 5,
