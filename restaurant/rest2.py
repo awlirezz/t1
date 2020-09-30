@@ -11,7 +11,7 @@ i = {
           'review': 47,
           'price': 1.5,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
-          'img': 'images/baqali.gif'},
+          'img': 'D:\VisualElements\t1'},
 
 }
 
