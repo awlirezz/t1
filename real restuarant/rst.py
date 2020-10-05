@@ -12,12 +12,12 @@ i = {
           'price': 1.5,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
           'img': 'restaurant\img\index.gif'},
-   # 1: {'name': 'SabziQormeh',
-    #      'rating': 4,
-    #      'review': 72,
-    #      'price': 1,
-    #      'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
-    #      'img': 'images/baqali1.gif'}
+    1: {'name': 'SabziQormeh',
+          'rating': 4,
+          'review': 72,
+          'price': 1,
+          'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
+          'img': 'restaurant\img\cart.gif'}
 }
 
 image = {}
@@ -58,11 +58,11 @@ for j in range(len(i)):
     f1_5 = tk.Frame(f1, bg='#ffc107')
     f1_5.grid(row=1, column=1)
 
-    #image[j] = PhotoImage(file='cart.gif').subsample(7)
-   # tk.Label(f1_5, image=image[j], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
-  #  tk.Label(f1_5, text=2, font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
-  #  tk.Button(f1_5, text='+').grid(row=0, column=2)
- #   tk.Button(f1_5, text='-').grid(row=0, column=3)
+    image[j] = PhotoImage(file='cart.gif').subsample(7)
+    tk.Label(f1_5, image=image[j], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
+    tk.Label(f1_5, text=2, font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
+    tk.Button(f1_5, text='+').grid(row=0, column=2)
+    tk.Button(f1_5, text='-').grid(row=0, column=3)
 
     des = i[j]['des']
     tk.Message(f1,
