@@ -4,6 +4,23 @@ import tkinter.ttk as ttk
 
 from config import *
 
+
+
+def cnt(sign,j):
+    if sign=='+':
+        i[j]['count'] +=1
+    else:
+        if i[j]   
+    else:
+        i[j]['count']   +=1
+        count[j].set(i[j]['count'])  
+
+
+
+
+
+
+
 # $$$$$$$$$$$$$$$$$$$ Food Information $$$$$$$$$$$$$$$$$$$ #
 i = {
     0: {'name': '★BaqaliQatoq',
@@ -11,33 +28,33 @@ i = {
           'review': 47,
           'price': 1.5,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
-          'img': 'img\\cart.gif'},
+          'img': 'img/cart.gif'},
     1: {'name': '★SabziQormeh',
           'rating': 4,
           'review': 72,
           'price': 1,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
-          'img': 'img\\cart.gif'}
+          'img': 'img/cart.gif'}
 }
 
 d = {
     0: {'name': '★Coca',
           'rating': 4,
-          'review': 47,
-          'price': 1.5,
+          'review': 67,
+          'price': 2,
           },
     1: {'name': '★Pepci',
           'rating': 5,
-          'review': 72,
+          'review': 77,
           'price': 2.5 ,
           },
     2: {'name': '★Sprite',
           'rating': 4,
-          'review': 72,
-          'price': 0.5 ,
+          'review': 55,
+          'price': 1.5 ,
           }  
 }
-
+count = {}
 image = {}
 img = {}
 # -------------------------------------------------------- #
@@ -79,11 +96,15 @@ for j in range(len(i)):
     f1_5 = tk.Frame(f1, bg='#ffc107')
     f1_5.grid(row=1, column=1)
 
-    image[j] = PhotoImage(file='img\\cart.gif').subsample(7)
+    image[j] = PhotoImage(file='img/cart.gif').subsample(7)
     tk.Label(f1_5, image=image[j], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
-    tk.Label(f1_5, text=2, font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
-    tk.Button(f1_5, text='+').grid(row=0, column=2)
-    tk.Button(f1_5, text='-').grid(row=0, column=3)
+
+
+    count = tk.StringVar()
+    count.set()
+    tk.Label(f1_5, textvariable=2, font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
+    tk.Button(f1_5, text='+',command=lambda x=str(j): cnt('+',x)).grid(row=0, column=2)
+    tk.Button(f1_5, text='-',command=lambda y=str(j): cnt('-',y)).grid(row=0, column=3)
 
     des = i[j]['des']
     tk.Message(f1,
@@ -108,7 +129,7 @@ for j in range(len(i)):
 
 for a in range(len(d)):
     f1 = tk.Frame(drink,bg='#ffc107')
-    f1.grid(row=a, column=0)
+    f1.grid(row=a, column=0, sticky=tk.W+tk.E)
 
     name = d[a]['name']
     tk.Label(f1,
