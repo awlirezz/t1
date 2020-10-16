@@ -6,14 +6,42 @@ from config import *
 
 
 
-def cnt(sign,j):
-    if sign=='+':
-        i[j]['count'] +=1
+def cnt(sign, j):
+    j = int(j)
+    if sign == '+':
+        i[j]['count'] += 1
     else:
-        if i[j]   
+        if i[j]['count']:
+            i[j]['count'] -= 1
+        else:
+            pass
+    count[j].set(i[j]['count'])
+
+
+
+
+def cntd(sign, j):
+    j = int(j)
+    if sign == '+':
+        d[j]['count'] += 1
     else:
-        i[j]['count']   +=1
-        count[j].set(i[j]['count'])  
+        if d[j]['count']:
+            d[j]['count'] -= 1
+        else:
+            pass
+    countd[j].set(d[j]['count'])
+
+def rec():
+    df_d = pd.DataFrame(d).T
+    df_d = df_d[df_d["count"] != 0].set_index('name')
+    df_f = pd.DataFrame(i).T[["name", "price", "count"]]
+    df_f = df_f[df_f["count"] != 0].set_index('name')
+    frames = [df_d, df_f]
+    df = pd.concat(frames)
+    df['fee'] = df['price'] * df['count']
+
+
+
 
 
 
@@ -54,6 +82,7 @@ d = {
           'price': 1.5 ,
           }  
 }
+countd = {}
 count = {}
 image = {}
 img = {}
@@ -100,9 +129,9 @@ for j in range(len(i)):
     tk.Label(f1_5, image=image[j], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
 
 
-    count = tk.StringVar()
-    count.set()
-    tk.Label(f1_5, textvariable=2, font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
+    count[j] = tk.StringVar()
+    count[j].set(i[j]['count'])
+    tk.Label(f1_5, textvariable=count[j], font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
     tk.Button(f1_5, text='+',command=lambda x=str(j): cnt('+',x)).grid(row=0, column=2)
     tk.Button(f1_5, text='-',command=lambda y=str(j): cnt('-',y)).grid(row=0, column=3)
 
@@ -156,8 +185,8 @@ for a in range(len(d)):
     tk.Label(f1,
         text=price,cnf=label_abc,
         font='fixedsys').grid(row=0, column=2)
-
-
+##################################################################################################################
+tk.Button(reciept, text='Confirm', command=rec).grid(row=0, column=0)
 
 
 
