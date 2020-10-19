@@ -1,3 +1,4 @@
+import pandas as pd
 import tkinter as tk
 from tkinter import PhotoImage
 import tkinter.ttk as ttk
@@ -132,8 +133,8 @@ for j in range(len(i)):
     count[j] = tk.StringVar()
     count[j].set(i[j]['count'])
     tk.Label(f1_5, textvariable=count[j], font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
-    tk.Button(f1_5, text='+',command=lambda x=str(j): cnt('+',x)).grid(row=0, column=2)
-    tk.Button(f1_5, text='-',command=lambda y=str(j): cnt('-',y)).grid(row=0, column=3)
+    tk.Button(f1_5, text='+', command=lambda x=str(j): cnt('+', x) ).grid(row=0, column=2)
+    tk.Button(f1_5, text='-', command=lambda y=str(j): cnt('-', y) ).grid(row=0, column=3)
 
     des = i[j]['des']
     tk.Message(f1,
