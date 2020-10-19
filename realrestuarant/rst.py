@@ -56,12 +56,14 @@ i = {
           'rating': 5,
           'review': 47,
           'price': 1.5,
+          'count': 0,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
           'img': 'img/cart.gif'},
     1: {'name': '★SabziQormeh',
           'rating': 4,
           'review': 72,
           'price': 1,
+          'count': 0,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
           'img': 'img/cart.gif'}
 }
@@ -71,17 +73,35 @@ d = {
           'rating': 4,
           'review': 67,
           'price': 2,
+          'count': 0,
           },
     1: {'name': '★Pepci',
           'rating': 5,
           'review': 77,
           'price': 2.5 ,
+          'count': 0,
           },
     2: {'name': '★Sprite',
           'rating': 4,
           'review': 55,
           'price': 1.5 ,
+          'count': 0,
+          },  
+    3: {'name': '★Water',
+          'rating': 4,
+          'review': 45,
+          'price': 1.5 ,
+          'count': 0,
+          },   
+    4: {'name': '★Mojito',
+          'rating': 4,
+          'review': 75,
+          'price': 1.5 ,
+          'count': 0,
           }  
+
+
+
 }
 countd = {}
 count = {}
@@ -175,17 +195,26 @@ for a in range(len(d)):
         ).grid(row=1, column=0, sticky="nw",padx=10)
 
     f1_5 = tk.Frame(f1, bg='#ffc107')
-    f1_5.grid(row=a, column=0, sticky=tk.W)
+    f1_5.grid(row=1, column=1)
 
-
-
-
-
-
-    price = str(d[a]['price']) + '$' 
+    image[l] = PhotoImage(file='cartd.gif').subsample(7)
+    tk.Label(f1_5, image=image[l], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
+    
+    countd[l] = tk.StringVar()
+    countd[l].set(d[l]['count'])
+    
+    tk.Label(f1_5, textvariable=countd[l], font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
+    tk.Button(f1_5, text='+', command=lambda x=str(l): cntd('+', x) ).grid(row=0, column=2)
+    tk.Button(f1_5, text='-', command=lambda x=str(l): cntd('-', x) ).grid(row=0, column=3)
+ 
+    price = str(d[l]['price']) + '$' 
     tk.Label(f1,
-        text=price,cnf=label_abc,
-        font='fixedsys').grid(row=0, column=2)
+             bg='#0377fc',
+            text=price,
+            font='fixedsys').grid(row=0, column=1)
+# ################## Recitp Tab ################## #
+tk.Button(reciept, text='Confirm', command=rec).grid(row=0, column=0)
+
 ##################################################################################################################
 tk.Button(reciept, text='Confirm', command=rec).grid(row=0, column=0)
 
