@@ -1,6 +1,6 @@
 with open('test.txt','r')as file :
 
-    line = file.readlines()
+    text = file.read()
 text = text.split('\n')
 print(text)
 
