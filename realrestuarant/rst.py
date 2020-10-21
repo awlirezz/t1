@@ -197,28 +197,23 @@ for a in range(len(d)):
     f1_5 = tk.Frame(f1, bg='#ffc107')
     f1_5.grid(row=1, column=1)
 
-    image[l] = PhotoImage(file='cartd.gif').subsample(7)
-    tk.Label(f1_5, image=image[l], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
+    image[a] = PhotoImage(file='cartd.gif').subsample(7)
+    tk.Label(f1_5, image=image[a], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
     
-    countd[l] = tk.StringVar()
-    countd[l].set(d[l]['count'])
+    countd[a] = tk.StringVar()
+    countd[a].set(d[a]['count'])
     
     tk.Label(f1_5, textvariable=countd[l], font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
-    tk.Button(f1_5, text='+', command=lambda x=str(l): cntd('+', x) ).grid(row=0, column=2)
-    tk.Button(f1_5, text='-', command=lambda x=str(l): cntd('-', x) ).grid(row=0, column=3)
+    tk.Button(f1_5, text='+', command=lambda x=str(a): cntd('+', x) ).grid(row=0, column=2)
+    tk.Button(f1_5, text='-', command=lambda x=str(a): cntd('-', x) ).grid(row=0, column=3)
  
-    price = str(d[l]['price']) + '$' 
+    price = str(d[a]['price']) + '$' 
     tk.Label(f1,
              bg='#0377fc',
             text=price,
             font='fixedsys').grid(row=0, column=1)
 # ################## Recitp Tab ################## #
 tk.Button(reciept, text='Confirm', command=rec).grid(row=0, column=0)
-
-##################################################################################################################
-tk.Button(reciept, text='Confirm', command=rec).grid(row=0, column=0)
-
-
 
 
 root.mainloop()
