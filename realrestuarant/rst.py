@@ -42,6 +42,12 @@ def rec():
     df['fee'] = df['price'] * df['count']
 
 
+    for index, row in df.iterrows():
+        # print("index>>>>",index,"\nrow", row[0], row[1], row[2]) 
+        tree.insert("", 0, text="", values=(index, row[0], row[1], row[2]))
+    
+    tree.insert("", 100, text="", values=("", "", "total:", df['fee'].sum() ))
+
 
 
 
@@ -58,7 +64,7 @@ i = {
           'price': 1.5,
           'count': 0,
           'des':'This is Iranian Food, which most used in north of IRAN Elit reprehen derit exce pteur dolor labore ipsum veniam exercitation deserunt.',
-          'img': 'img/cart.gif'},
+          'img': 'img\cart.gif'},
     1: {'name': '★SabziQormeh',
           'rating': 4,
           'review': 72,
@@ -197,23 +203,37 @@ for a in range(len(d)):
     f1_5 = tk.Frame(f1, bg='#ffc107')
     f1_5.grid(row=1, column=1)
 
-    image[a] = PhotoImage(file='cartd.gif').subsample(7)
+    image[a] = PhotoImage(file='img\cartd.gif').subsample(7)
     tk.Label(f1_5, image=image[a], bg='#ffc107', fg='#ffffff').grid(row=0, column=0)
     
     countd[a] = tk.StringVar()
     countd[a].set(d[a]['count'])
     
-    tk.Label(f1_5, textvariable=countd[l], font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
+    tk.Label(f1_5, textvariable=countd[a], font=('times', 15), bg='#ffc107').grid(row=0, column=1, sticky=tk.S)
     tk.Button(f1_5, text='+', command=lambda x=str(a): cntd('+', x) ).grid(row=0, column=2)
     tk.Button(f1_5, text='-', command=lambda x=str(a): cntd('-', x) ).grid(row=0, column=3)
  
     price = str(d[a]['price']) + '$' 
     tk.Label(f1,
-             bg='#0377fc',
+             
             text=price,
             font='fixedsys').grid(row=0, column=1)
 # ################## Recitp Tab ################## #
 tk.Button(reciept, text='Confirm', command=rec).grid(row=0, column=0)
+tree = ttk.Treeview(reciept)
+tree.grid(row=1, column=0, columnspan=3)
+tree["columns"]=("one","two","three", "four")
+tree.column("#0", width=1, stretch=tk.NO)
+tree.column("one", width=150, minwidth=150, stretch=tk.NO)
+tree.column("two", width=70)
+tree.column("three", width=80, minwidth=50, stretch=tk.NO)
+tree.column("four", width=80, minwidth=50, stretch=tk.NO)
+
+tree.heading("#0",text="ID",anchor=tk.W)
+tree.heading("one", text="Name",anchor=tk.W)
+tree.heading("two", text="Fee",anchor=tk.W)
+tree.heading("three", text="Count",anchor=tk.W)
+tree.heading("four", text="Price",anchor=tk.W)
 
 
 root.mainloop()
