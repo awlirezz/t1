@@ -10,9 +10,6 @@ root.title('Bank')
 #top= tk.Toplevel()
 #top.title('Form')
 
-frame_top= tk.Frame()
-frame_top=ttk.Notebook()
-
 note =ttk.Notebook()
 
 
@@ -23,16 +20,11 @@ login_form = tk.Frame()
 
 
 note.add(register_form, text='Regisater')
-note.add(register_form, text='Log In')
+note.add(login_form, text='Log In')
 note.grid(row=0,column=0)
 
 tk.Label(register_form,text= 'Username').grid(row=0,column=0)
 tk.Label(register_form,text= 'Password:').grid(row=1,column=0)
-
-
-
-
-
 form_user=tk.StringVar()
 form_pass=tk.StringVar()
 tk.Entry(register_form,textvariable= 'form_user').grid(row=0,column=1)
