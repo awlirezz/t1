@@ -1,7 +1,18 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from tkinter import Toplevel, messagebox
 import hashlib
 import json
+import datetime
+
+
+
+
+
+
+def get_datetime():
+    frm = "%A, %H:%M:%S, %B-%d-%Y"
+    return datetime.datetime.now().strftime(frm)
 
 
 def read_json(address):
@@ -19,21 +30,53 @@ def to_sha1(password):
     return hashlib.sha1(password.encode('utf-8')).hexdigest()
 
 
-
+def get_card_number():
+    last = read_json('names.json')[-1]
 
 def register():
     input_user = form_user.get()
-    input_pass = to_sha1(form_pass.get())           
-    form_user.set('')
-    form_pass.set('')  
     file = read_json('names.json')
-    data = {'usernames':input_user,'password':input_pass}
-    file.append(data) 
-    write_json('names.json',file) 
+    all_users = []
+    for person in file:
+        all_users.append(person['username'])
+    if input_user not in all_users:
+        input_pass = to_sha1(form_pass.get())
+        form_user.set("")
+        form_pass.set("")
+        file = read_json('names.json')
+        data = {
+            "username": input_user,
+            "password": input_pass,
+            "created_at": get_datetime(),
+            "card_number": get_card_number(),
+        }     
+        file.append(data)
+        write_json('names.json', file)
+    else:
+        messagebox.showerror("Username Error", "This Username is already in use!")
 
+
+def find_person(file, username):
+    for person in file:
+            if person['username'] == username:
+                return person
+    messagebox.showerror("Username Error", "Entered Invalid Username")
+    return None
 
 def login():
-    pass    
+    username = login_user.get() 
+    password = to_sha1(login_pass.get())
+    file = read_json('names.json')
+    person = find_person(file, username)
+    if person is None:
+        pass
+    else:
+        if person["password"] == password:
+            top.deiconify()
+            root.withdraw()
+
+        else:
+            messagebox.showerror("Password Error", "Entered Invalid Password")
 
 
 
@@ -43,7 +86,9 @@ root = tk.Tk()
 root.title('Bank')
 
 
-
+top = tk.Toplevel()
+top.title("Main Menu")
+top.withdraw()
 
 note =ttk.Notebook()
 
