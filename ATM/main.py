@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter import Toplevel, messagebox
+from tkinter import  messagebox
 import hashlib
 import json
 import datetime
@@ -9,7 +9,42 @@ import random
 
 
 
-#def #################################################################################
+#def #############################################################################################################################
+def deposite():
+
+    def deposite_mony():
+
+        all = read_json('names.Json')
+        if all[index]['balance'] > deposite_amount.get():
+
+           all[index]['username'] -= all[index]['userename']
+           all[index]['card_number'] -= all[index]['card_number']
+           all[index]['amount'] -= deposite_amount.get()
+           all[index]['created_at'] -= get_datetime()
+           
+
+           all[index]['balance'] -= deposite_amount.get()
+           write_json('names.json,all')
+        else:
+             messagebox.showerror("Less Money", "Not Enough Money!")
+
+    def deposite_destroy():
+        dps.destroy()
+        top.withdraw()
+    top.deiconify()
+    dps = tk.Toplevel()
+    tk.Label(dps, text='Amount').grid(row=0,column=0)
+    deposite_amount= tk.IntVar()
+    tk.Entry(dps,textvariable=deposite_amount).grid(row=0,column=1)
+    tk.Button(dps,text='Deposite',command=deposite_mony).grid(row=1,column=0,columnspan=2,sticky=tk.W+tk.E)
+    tk.Button(dps,text='Close',command=deposite_destroy).grid(row=2,column=0,columnspan=2,sticky=tk.W+tk.E)
+
+
+
+
+
+
+
 def get_datetime():
     frm = "%A, %H:%M:%S, %B-%d-%Y"
     return datetime.datetime.now().strftime(frm)
@@ -59,7 +94,7 @@ def register():
             "password": input_pass,
             "created_at": get_datetime(),
             "card_number": get_card_number(),
-            "balance" :1000,
+            "balance" :10000,
             }     
             file.append(data)
             write_json('names.json', file)
@@ -68,17 +103,20 @@ def register():
 
 
 def find_person(file, username):
+    index = 1
     for person in file:
             if person['username'] == username:
-                return person
+                return person,index
+            index +=1    
     messagebox.showerror("Username Error", "Entered Invalid Username")
     return None
 
 def login():
+    global index
     username = login_user.get() 
     password = to_sha1(login_pass.get())
     file = read_json('names.json')
-    person = find_person(file, username)
+    person, index = find_person(file, username)
     if person is None:
         pass
     else:
@@ -89,7 +127,18 @@ def login():
         else:
             messagebox.showerror("Password Error", "Entered Invalid Password")
 
-#root ##########################################################################################
+deposite_transaction = {
+      'usernames':'',
+      'card_number':'0',
+      'created_at':'',
+      'type':'deposite',
+      'amount':'0',
+}
+
+
+
+
+#root ############################################################################################################################
 root = tk.Tk()
 root.title('Bank')
 top = tk.Toplevel()
@@ -109,7 +158,7 @@ form_pass=tk.StringVar()
 tk.Entry(register_form,textvariable= form_user).grid(row=0,column=1)
 tk.Entry(register_form,textvariable= form_pass,show='*').grid(row=1,column=1)
 tk.Button(register_form,text='Register',command=register ).grid(row=2,column=0,columnspan=2,sticky=tk.W+tk.E)
-#login ########################################################################################################################
+#login ###########################################################################################################################
 tk.Label(login_form,text= 'Username').grid(row=0,column=0)
 tk.Label(login_form,text= 'Password:').grid(row=1,column=0)
 
@@ -120,9 +169,9 @@ tk.Entry(login_form,textvariable=login_pass,show='*').grid(row=1,column=1)
 
 tk.Button(login_form,text='login',command=login).grid(row=2,column=0,columnspan=2,sticky=tk.W+tk.E)
 
-#top ########################################################################################################################
+#top #############################################################################################################################
 tk.Button(top,text='Transfer',command=login).grid(row=0,column=0,sticky=tk.W+tk.E)
-tk.Button(top,text='Deposite',command=login).grid(row=0,column=1,sticky=tk.W+tk.E)
+tk.Button(top,text='Deposite',command=deposite).grid(row=0,column=1,sticky=tk.W+tk.E)
 tk.Button(top,text='Balance',command=login).grid(row=1,column=0,sticky=tk.W+tk.E)
 tk.Button(top,text='Change Password',command=login).grid(row=1,column=1,sticky=tk.W+tk.E)
 tk.Button(top,text='+1000',command=root.destroy).grid(row=2,column=0,columnspan=2,sticky=tk.W+tk.E)
