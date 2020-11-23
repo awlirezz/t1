@@ -12,36 +12,55 @@ import random
 #def #############################################################################################################################
 def deposite():
 
-    def deposite_mony():
-
-        all = read_json('names.Json')
+    def deposite_money():
+        all = read_json('names.json')
         if all[index]['balance'] > deposite_amount.get():
 
-           all[index]['username'] -= all[index]['userename']
-           all[index]['card_number'] -= all[index]['card_number']
-           all[index]['amount'] -= deposite_amount.get()
-           all[index]['created_at'] -= get_datetime()
-           
+            all[index]['balance'] -= deposite_amount.get()
+            write_json('names.json', all)
 
-           all[index]['balance'] -= deposite_amount.get()
-           write_json('names.json,all')
+            deposite_transaction['username'] = all[index]['username']
+            deposite_transaction['balance'] = all[index]['balance']
+            deposite_transaction['card_number'] = all[index]['card_number']
+            deposite_transaction['amount'] = deposite_amount.get()
+            deposite_transaction['created_at'] = get_datetime()
+
+            all_tra = read_json('transactions.json')
+            all_tra.append(deposite_transaction)
+            write_json('transactions.json', all_tra)
+
         else:
-             messagebox.showerror("Less Money", "Not Enough Money!")
+                 messagebox.showerror("Less Money", "Not Enough MOney")
 
     def deposite_destroy():
         dps.destroy()
-        top.withdraw()
-    top.deiconify()
+        top.deiconify()
+
+
+
+
     dps = tk.Toplevel()
     tk.Label(dps, text='Amount').grid(row=0,column=0)
     deposite_amount= tk.IntVar()
     tk.Entry(dps,textvariable=deposite_amount).grid(row=0,column=1)
-    tk.Button(dps,text='Deposite',command=deposite_mony).grid(row=1,column=0,columnspan=2,sticky=tk.W+tk.E)
+    tk.Button(dps,text='Deposite',command=deposite_money).grid(row=1,column=0,columnspan=2,sticky=tk.W+tk.E)
     tk.Button(dps,text='Close',command=deposite_destroy).grid(row=2,column=0,columnspan=2,sticky=tk.W+tk.E)
 
 
 
 
+
+def transfer():
+    top.withdraw()
+    trf = tk.Toplevel()
+    tk.Label(trf, text='Destination').grid(row=0, column=0)
+    destination_card = tk.IntVar()
+    tk.Entry(trf, textvariable=destination_card).grid(row=0, column=1)
+    tk.Label(trf, text='Amount').grid(row=1, column=0)
+    destinition_amount = tk.IntVar()
+    tk.Entry(trf, textvariable=destinition_amount).grid(row=1, column=1)
+    tk.Button(trf, text='Transfer', command=transer_money).grid(row=2, column=0, columnspan=2)
+    tk.Button(trf, text='Close', command=transfer_destroy).grid(row=3, column=0, columnspan=2)
 
 
 
