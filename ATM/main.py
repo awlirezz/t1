@@ -184,14 +184,13 @@ def login():
             messagebox.showerror("Password Error", "Entered Invalid Password")
 
 deposite_transaction = {
-      'usernames':'',
-      'card_number':'0',
-      'created_at':'',
+     
       'type':'deposite',
-      'amount':'0',
+     
 }
 
 transfer_transaction={
+    'type':'transfer',
 
 }
 
