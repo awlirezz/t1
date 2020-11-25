@@ -51,29 +51,48 @@ def deposite():
 
 
 def transfer():
-    def transer_money():
+    def transfer_confirmation():
+        all = read_json('')
+
+
+
+
+
+
+
+    def tranfser_money():
         all = read_json('names.json')
         if all[index]['balance'] > destination_amount.get():
             destination_index = find_destination(destination_card.get())
             if destination_index is None:
                 messagebox.showerror("No Destinatio", "Find No Destination")
             else:
-                all[index]['balance'] -= destination_amount.get()
-                all[destination_index]['balance'] += destination_amount.get()
-                write_json('names.json', all)
+                confirmation = Toplevel()
+                string=f'''
+        From    :  {all[index]['card_number']} 
+        Name    :  {all[index]['card_number']}  
+                                             '''
+              
+                tk.Message(confirmation,text='')
+                tk.Button(confirmation,text='Confirm',commnad=transfer_confirmation).grid(row=2,column=0,columnspan=2)
+                tk.Button(confirmation,text='Close',commnad=confirmation.destroy).grid(row=2,column=0,columnspan=2)
+            # else:
+                #all[index]['balance'] -= destination_amount.get()
+                #  all[destination_index]['balance'] += destination_amount.get()
+                #write_json('names.json', all)
 
-                transfer_transaction['username'] = all[index]['username']
-                transfer_transaction['balance'] = all[index]['balance']
-                transfer_transaction['from'] = all[index]['card_number']
-                transfer_transaction['to'] = all[destination_index]['card_number']
-                transfer_transaction['amount'] = destination_amount.get()
-                transfer_transaction['created_at'] = get_datetime()
+                #  transfer_transaction['username'] = all[index]['username']
+                #   transfer_transaction['balance'] = all[index]['balance']
+                #  transfer_transaction['from'] = all[index]['card_number']
+                #   transfer_transaction['to'] = all[destination_index]['card_number']
+                #  transfer_transaction['amount'] = destination_amount.get()
+                #  transfer_transaction['created_at'] = get_datetime()
 
-                all_tra = read_json('transactions.json')
-                all_tra.append(transfer_transaction)
-                write_json('transactions.json', all_tra)
-        else:
-            messagebox.showerror("Less Money", "Not Enough Money")
+                #    all_tra = read_json('transactions.json')
+                #    all_tra.append(transfer_transaction)
+                #    write_json('transactions.json', all_tra)
+      #else:
+            #messagebox.showerror("Less Money", "Not Enough Money")
 
     def transfer_destroy():
         trf.destroy()
@@ -88,7 +107,7 @@ def transfer():
     tk.Label(trf, text='Amount').grid(row=1, column=0)
     destination_amount = tk.IntVar()
     tk.Entry(trf, textvariable=destination_amount).grid(row=1, column=1)
-    tk.Button(trf, text='Transfer', command=transer_money).grid(row=2, column=0, columnspan=2)
+    tk.Button(trf, text='Transfer', command=tranfser_money).grid(row=2, column=0, columnspan=2)
     tk.Button(trf, text='Close', command=transfer_destroy).grid(row=3, column=0, columnspan=2)
 
 
