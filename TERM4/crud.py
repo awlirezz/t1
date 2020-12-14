@@ -1,6 +1,7 @@
 import mysql.connector as sql
 
-def create():
+
+def create(name,last_name,b_date,sex,mail,phone,id_n,addr):
     try:
         cnx = sql.connect(user  = 'root'    ,     password =   'alyrzwm'  ,     host     =   '127.0.0.1'     ,   database =   'juniors')
         cursor = cnx.cursor()
@@ -12,10 +13,10 @@ def create():
         print('Something is wrong with your connection')
 
 
-    query ="""
+    query =f"""
     (first_name,last_name,birth_date,sex,email,phone,id_card,address)
     VALUES
-    ('aly','reza','2000,01,01','m','l_awlirezz_l@outlook.com','09029741367','0250612626','Gilan');
+    ({name},{last_name},{b_date},{sex},{mail},{phone},{id_n},{addr});
     """    
 
     cursor.execute(query)
