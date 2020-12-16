@@ -21,5 +21,17 @@ VALUES
 ('ALIREZA','TOFIGHI','2000,01,01','m','l_awlirezz_l@outlook.com','09029741367','0250614626','Gilan');
 
 
+CREATE DATABASE gym;
 
- 
+USE gym;
+
+
+
+ CREATE TABLE athles(
+     id INT AUTO_INCREMENT,
+     first_name VARCHAR(50) NOT NULL,
+     last_name VARCHAR(50) NOT NULL,
+     phone VARCHAR(11) NOT NULL,
+     PRIMARY KEY (id)
+);
+     
