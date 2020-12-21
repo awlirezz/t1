@@ -24,4 +24,14 @@ def create(cnx, cursor, first_name, last_name, phone, sex):
     cnx.commit()
     cursor.close()
     cnx.close()
-
+def read(cnx, cursor):
+    query = """
+    SELECT * FROM athles;
+    """
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    print("READ SUCCESSFULLY DONE!")
+    return data
