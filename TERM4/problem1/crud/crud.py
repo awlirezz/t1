@@ -35,3 +35,45 @@ def read(cnx, cursor):
     cnx.close()
     print("READ SUCCESSFULLY DONE!")
     return data
+
+
+def update(cnx,cursor,f,l,p,s,id_):
+    data = (f,l,p,s,id_)
+    query = """
+    Update athles
+    SET first_name=$s ,last_name=$s, phone=$s ,sex=$s
+    WHERE id=$s;
+    """
+    cursor.execute(query, data)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    print('UPDATE SUCCESSFULLY DONE!')
+    
+
+
+def delete():
+    queary = f"""
+    DELETE FROM athles
+    WHERE id={id_};
+    """
+    cursor.execute(query)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    print("DELETE SUCCESSFULLY DONE!")
+    
+
+
+def get_one(cnx,cursor,id_):
+    queary = f"""
+    SELECT *FROM athles WHERE id={id_}
+    """
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+    print("READ SUCCESSFULLY DONE!")
+    return data
+
