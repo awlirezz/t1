@@ -12,7 +12,7 @@ class human:
    
 
 
-p = Human()
+p = human()
 p.name = 'Alireza'
 p.family= 'Tofiqi'
 p.hair_color= 'black'
