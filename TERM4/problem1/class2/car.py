@@ -24,8 +24,9 @@ class Student(Person):
         super().__init__(name,l_name)
         self.year = year
         self.field = field
-        
-
+    def salary_calculate(self):
+        return f'{self.name}{self.l_name}is a student'    
+ 
 
 m = Professor('mahan','kabir','full-professor',500)
 print(m.salary_caculate())
