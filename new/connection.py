@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 class Connection:
     def __init__(self):            #engine://username:password@localhost/database
-        self.engine = create_engine('mysql+pymysql://root:alyrzwm@localhost/a')
+        self.engine = create_engine('mysql://root:alyrzwm@localhost/a')
 
     def get_connection(self):
         return self.engine
